@@ -73,7 +73,7 @@ Final test MAE:
 
 ## Actual vs Predicted
 
-![Actual vs predicted](actual vs prediction.png)
+![Actual vs predicted](actual_vs_prediction.png)
 
 ## Residual Plot
 
