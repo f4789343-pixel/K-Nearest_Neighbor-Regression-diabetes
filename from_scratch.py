@@ -12,6 +12,7 @@ print(df.columns)
 X = df.drop(columns='target')
 y = df['target']
 
+np.random.seed(42)
 indices = np.random.permutation(len(X))
 
 test_size = int(len(X) * 0.2)
