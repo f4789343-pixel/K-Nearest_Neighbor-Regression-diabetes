@@ -77,7 +77,7 @@ Final test MAE:
 
 ## Residual Plot
 
-![Residual plot](errors.png)
+![Residual plot](residual_plot.png)
 
 ## Folder structure
 
