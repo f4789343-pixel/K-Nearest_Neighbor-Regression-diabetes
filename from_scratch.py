@@ -21,42 +21,19 @@ test_indices = indices[:test_size]
 
 
 x_train = X.iloc[train_indices]
-#x_test = X.iloc[test_indices]
+x_test = X.iloc[test_indices]
 
-#y_train = y.iloc[train_indices]
-#y_test = y.iloc[test_indices]
+y_train = y.iloc[train_indices]
+y_test = y.iloc[test_indices]
 
-#mean = np.mean(x_train)
-#std = np.std(x_train)
+mean = np.mean(x_train)
+std = np.std(x_train)
 
-#x_train_scaled = (x_train - mean) / std
-#x_test_scaled = (x_test - mean) / std
+x_train_scaled = (x_train - mean) / std
+x_test_scaled = (x_test - mean) / std
 
-#x_train_scaled = x_train_scaled.to_numpy()
-#x_test_scaled = x_test_scaled.to_numpy()
-
-indices = np.random.permutation(len(x_train))
-
-test_size = int(len(x_train) * 0.2)
-
-train_indices = indices[test_size:]
-test_indices = indices[:test_size]
-
-
-x_train_new = X.iloc[train_indices]
-x_test_val = X.iloc[test_indices]
-
-y_train_new = y.iloc[train_indices]
-y_val = y.iloc[test_indices]
-
-mean = np.mean(x_train_new, axis=0)
-std = np.std(x_train_new, axis=0)
-
-x_train_new_scaled = (x_train_new - mean) / std
-x_val_scaled = (x_test_val - mean) / std
-
-x_train_new_scaled = x_train_new_scaled.to_numpy()
-x_val_scaled = x_val_scaled.to_numpy()
+x_train_scaled = x_train_scaled.to_numpy()
+x_test_scaled = x_test_scaled.to_numpy()
 
 
 def euclidean_distance(x_test, x_train):
@@ -94,24 +71,21 @@ def knn_predict(k, x_train, x_test, y_train):
    nearest = nearest_distances(k, sorted_)
 
    return average(nearest)
-k = 1
+best_k = 5
 def predict(k, x_train_scaled, x_test_scaled, y_train):
    predictions = []
    for point in x_test_scaled:
       predictions.append(knn_predict(k, x_train_scaled, point, y_train))
    return predictions
-#print(predict(k, x_train_scaled, x_test_scaled, y_train))
+predictions = predict(best_k, x_train_scaled, x_test_scaled, y_train)
 
 def MAE(predictions, y_test):
    error = 0
    for p, t in zip(predictions, y_test):
       error += abs(p - t)
    return error / len(y_test)
+test_MAE = MAE(predictions, y_test)
+print('Final test MAE:', test_MAE)
 
-result = []
-for k in [1, 3, 5, 7, 9]:
-   predictions = predict(k,x_train_new_scaled,x_val_scaled,y_train_new)
-   error = MAE(predictions, y_val)
-   result.append((k, error))
 
-print(result)
+
