@@ -79,6 +79,10 @@ Final test MAE:
 
 ![Residual plot](residual_plot.png)
 
+- Error > 0, model under predicted
+- Error < 0, model over predicted
+- Error = 0, model prediction was correct.
+
 ## Folder structure
 
 KNN_Regression_Project/
