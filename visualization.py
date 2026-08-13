@@ -7,7 +7,7 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], linestyle='
 plt.xlabel('Actual Values')
 plt.ylabel('Predicted Values')
 plt.title('Actual vs Predicted Values')
-plt.savefig('actual vs prediction.png')
+plt.savefig('actual_vs_prediction.png')
 plt.show()
 
 Errors = y_test - predictions
